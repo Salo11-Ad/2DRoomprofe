@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f; //variable para guardar la velocidad
-
+    public int score = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +30,22 @@ public class PlayerController : MonoBehaviour
     //trigger
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if(other.CompareTag("Collectable"))
+        {
+            score = score + 1;
+            
+            Destroy(other.gameObject);
+            Debug.Log("Collected!!!");
+            Debug.Log("Score: " + score);
+
+            if(score >= 3)
+            {
+                Debug.Log("You won!!!");
+            }
+
+
+
+        }
     }
 
 }
